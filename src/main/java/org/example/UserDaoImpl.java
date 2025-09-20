@@ -69,40 +69,36 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean checkExistEmail(String email) {
-        boolean duplicate = false;
-        String query = "select * from [user] where email = ?";
-        try {
-            conn = DBConnection.getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, email);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                duplicate = true;
-            }
-            ps.close();
-            conn.close();
-        } catch (Exception ex) {}
-        return duplicate;
+        String sql = "SELECT 1 FROM Users WHERE email = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
+            ps.setString(1, email);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next(); // nếu có bản ghi trả về true
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace(); // log lỗi
+            return false; // lỗi SQL → coi như không tồn tại
+        }
     }
 
     @Override
     public boolean checkExistUsername(String username) {
-        boolean duplicate = false;
-        String query = "select * from [User] where username = ?";
-        try {
-            conn = DBConnection.getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, username);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                duplicate = true;
-            }
-            ps.close();
-            conn.close();
-        } catch (Exception ex) {}
-        return duplicate;
+        String sql = "SELECT 1 FROM Users WHERE username = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
+            ps.setString(1, username);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next(); // nếu có bản ghi trả về true
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace(); // log lỗi
+            return false; // lỗi SQL → coi như không tồn tại
+        }
     }
 
     @Override
