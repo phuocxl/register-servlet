@@ -1,4 +1,8 @@
-package org.example;
+package org.example.service.impl;
+
+import org.example.model.entity.User;
+import org.example.config.DBConnection;
+import org.example.service.UserDao;
 
 import java.sql.*;
 

@@ -1,10 +1,12 @@
-package org.example;
+package org.example.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.example.service.impl.UserServiceImpl;
+import org.example.service.UserService;
 
 import java.io.IOException;
 
