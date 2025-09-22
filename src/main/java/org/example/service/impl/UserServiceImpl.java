@@ -1,6 +1,10 @@
-package org.example;
+package org.example.service.impl;
 
-public class UserServiceImpl implements  UserService {
+import org.example.model.entity.User;
+import org.example.service.UserDao;
+import org.example.service.UserService;
+
+public class UserServiceImpl implements UserService {
     UserDao userDao = new UserDaoImpl();
 
     @Override

@@ -1,4 +1,6 @@
-package org.example;
+package org.example.service;
+
+import org.example.model.entity.User;
 
 public interface UserDao {
     void insert(User user);
